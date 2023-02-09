@@ -102,12 +102,12 @@ jobs:
       - checkout
       - restore_cache:
           keys: [frontend-build]
-        - run:
-            name: Scanning frontend
-            command: |
-              cd frontend
-              npm install
-              npm audit --audit-level=critical
+      - run:
+          name: Scanning frontend
+          command: |
+            cd frontend
+            npm install
+            npm audit --audit-level=critical
 
   scan-backend:
     docker:
