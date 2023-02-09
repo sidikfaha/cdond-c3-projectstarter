@@ -114,7 +114,7 @@ jobs:
       - image: circleci/node:16.13
     steps:
       - checkout
-      - resotre_cache:
+      - restore_cache:
           keys: [backend-cache]
       - run:
           name: Scanning Backend
