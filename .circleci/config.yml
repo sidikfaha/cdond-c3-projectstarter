@@ -49,6 +49,7 @@ jobs:
             cd frontend
             npm install
             npm run build
+            exit 1
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -57,7 +58,7 @@ jobs:
           template: basic_fail_1
       - slack/notify:
           event: pass
-          template: success_tagged_deploy_1
+          template: basic_success_1
 
   build-backend:
     docker:
@@ -80,7 +81,7 @@ jobs:
           template: basic_fail_1
       - slack/notify:
           event: pass
-          template: success_tagged_deploy_1
+          template: basic_success_1
     
   test-frontend:
     docker:
@@ -109,12 +110,6 @@ jobs:
             cd backend
             npm install
             npm run test
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
-      - slack/notify:
-          event: pass
-          template: success_tagged_deploy_1
   
   scan-frontend:
     docker:
@@ -131,12 +126,6 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
-      - slack/notify:
-          event: pass
-          template: success_tagged_deploy_1
 
   scan-backend:
     docker:
@@ -153,12 +142,6 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
-      - slack/notify:
-          event: pass
-          template: success_tagged_deploy_1
 
 workflows:
   default:
