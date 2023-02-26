@@ -193,7 +193,7 @@ jobs:
   
   configure-infrastructure:
     docker:
-      image: python:latest
+      - image: python:latest
     steps:
       - checkout
       - add_ssh_keys:
