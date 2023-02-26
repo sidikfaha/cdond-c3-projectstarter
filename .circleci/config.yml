@@ -145,7 +145,7 @@ jobs:
 
   deploy-infrastructure:
     docker:
-      - image: amazon/aws-cli
+      - image: python:latest
     steps:
       - checkout
       - run:
@@ -153,6 +153,10 @@ jobs:
           command: |
             sudo apt update
             sudo apt install tar gzip -y
+      - run:
+          name: Install AWS CLI
+          command: |
+            pip3 install awscli --upgrade
       - run:
           name: Ensure back-end infrastructure exists
           command: |
