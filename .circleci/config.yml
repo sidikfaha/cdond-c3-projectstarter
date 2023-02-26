@@ -151,8 +151,8 @@ jobs:
       - run:
           name: Install tar and gzip
           command: |
-            sudo apt update
-            sudo apt install tar gzip -y
+            apt update
+            apt install tar gzip -y
       - run:
           name: Install AWS CLI
           command: |
